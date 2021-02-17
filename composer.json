@@ -1,0 +1,16 @@
+{
+    "name": "achatainga/wpgrahql-elementor",
+    "type": "library",
+    "description": "Expose Elementor css to wpgraphql",
+    "keywords": ["wpgraphql","wordpress","elementor"],
+    "homepage": "https://github.com/achatainga",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alejandro Chataing",
+            "email": "a.chataing.a@gmail.com",
+            "homepage": "https://achatainga.com",
+            "role": "Developer"
+        }
+    ]
+}
