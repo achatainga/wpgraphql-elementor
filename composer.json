@@ -1,6 +1,6 @@
 {
     "name": "achatainga/wpgraphql-elementor",
-    "type": "library",
+    "type": "wordpress-plugin",
     "description": "Expose Elementor css to wpgraphql",
     "keywords": ["wpgraphql","wordpress","elementor"],
     "homepage": "https://github.com/achatainga",
@@ -12,5 +12,8 @@
             "homepage": "https://achatainga.com",
             "role": "Developer"
         }
-    ]
+    ],
+    "require": {
+        "php": ">=5.6"
+    }
 }
