@@ -1,5 +1,5 @@
 {
-    "name": "achatainga/wpgrahql-elementor",
+    "name": "achatainga/wpgraphql-elementor",
     "type": "library",
     "description": "Expose Elementor css to wpgraphql",
     "keywords": ["wpgraphql","wordpress","elementor"],
