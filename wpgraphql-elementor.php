@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       WPGraphQL Elementor
  * Plugin URI:        https://github.com/achatainga/wpgraphql-elementor
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Expose Elementor css to wpgraphql.
  * Version:           1.0.0
  * Author:            Alejandro Chataing
  * Author URI:        https://github.com/achatainga
