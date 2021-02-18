@@ -161,9 +161,9 @@ function wpgraphql_elementor_get_content($URL){
 			throw new Exception('failed to initialize');
 		}
 	
-		curl_setopt($ch, CURLOPT_URL, 'http://example.com/');
+		curl_setopt($ch, CURLOPT_URL, $URL);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt(/* ... */);
+		// curl_setopt(/* ... */);
 	
 		$content = curl_exec($ch);
 	
