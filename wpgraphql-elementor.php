@@ -115,7 +115,7 @@ function register_my_custom_graphql_field() {
 		'resolve' => function( $post ) {
 
 			// Let's get the content of post number 123
-			$url = "http://43b1d2c83a47.ngrok.io/index.php/elementor-11/";
+			$url = "https://bc7a3cb38ceb.ngrok.io/index.php/elementor-11/";
 			$curl = curl_init( $url );
 
 			// curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
