@@ -108,10 +108,23 @@ function beautiful_elementor_timeline_widget_register_required_plugins() {
 	tgmpa( $plugins, $config );
 }
 
-add_action( 'graphql_register_types', 'example_extend_wpgraphql_schema' );
-function example_extend_wpgraphql_schema() {
+add_action( 'graphql_register_types', 'register_my_custom_graphql_connection' );
+function register_my_custom_graphql_connection() {
+	$config = [
+		'fromType' => 'RootQuery',
+		'toType' => 'Page',
+		'fromFieldName' => 'customField',
+		'connectionTypeName' => 'customFieldConnection',
+		'resolve' => function( $id, $args, $context, $info ) {
+			$resolver   = new \WPGraphQL\Data\Connection\PostObjectConnectionResolver( $source, $args, $context, $info, $post_type );
+			$connection = $resolver->get_connection();
+		
+			return $connection;
+		},
+	];
+	register_graphql_connection( $config );
 	register_graphql_field( 'RootQuery', 'customField', [
-		'type' => \WPGraphQL\Types::list_of(\WPGraphQL\Types::post_object('page')),
+		'type' => 'String',
 		'resolve' => function() {
 			global $wp_styles;
 			$enqueued_styles = array();
