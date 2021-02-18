@@ -138,7 +138,7 @@ function register_my_custom_graphql_field() {
 				}
 			}
 
-			return implode( ' ; ', $styles_array );
+			return json_encode( $response );
 		}
 	] );
 };
