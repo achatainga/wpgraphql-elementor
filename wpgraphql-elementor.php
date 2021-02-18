@@ -111,7 +111,7 @@ function beautiful_elementor_timeline_widget_register_required_plugins() {
 add_action( 'graphql_register_types', 'example_extend_wpgraphql_schema' );
 function example_extend_wpgraphql_schema() {
 	register_graphql_field( 'RootQuery', 'customField', [
-		'type' => 'Page',
+		'type' => \WPGraphQL\Types::list_of(\WPGraphQL\Types::post_object('page')),
 		'resolve' => function() {
 			global $wp_styles;
 			$enqueued_styles = array();
