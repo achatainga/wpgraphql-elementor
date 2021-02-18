@@ -107,3 +107,14 @@ function beautiful_elementor_timeline_widget_register_required_plugins() {
 
 	tgmpa( $plugins, $config );
 }
+
+add_action( 'graphql_register_types', 'example_extend_wpgraphql_schema' );
+function example_extend_wpgraphql_schema() {
+  register_graphql_field( 'RootQuery', 'customField', [
+    'type' => 'String',
+    'description' => __( 'Describe what the field should be used for', 'your-textdomain' ),
+    'resolve' => function() {
+       return 'value...';
+    }
+  ] );
+};
