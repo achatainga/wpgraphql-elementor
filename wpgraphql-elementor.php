@@ -117,4 +117,17 @@ function example_extend_wpgraphql_schema() {
        return 'value...';
     }
   ] );
+  register_graphql_object_type( 'CustomType', [
+	'description' => __( 'Describe what a CustomType is', 'your-textdomain' ),
+	'fields' => [
+	  'testField' => [
+		'type' => 'String',
+		'description' => __( 'Describe what testField should be used for', 'your-textdomain' ),
+	  ],
+	  'count' => [
+		'type' => 'Int',
+		'description' => __( 'Describe what the count field should be used for', 'your-textdomain' ),
+	  ],
+	],
+  ] );
 };
