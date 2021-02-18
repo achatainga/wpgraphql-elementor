@@ -117,24 +117,24 @@ function register_my_custom_graphql_field() {
 			// Let's get the content of post number 123
 			$response = file_get_contents( "https://43b1d2c83a47.ngrok.io/index.php/elementor-11/" );
 		
-			if ( is_array( $response ) ) {
+			// if ( is_array( $response ) ) {
 		
-				$content = $response['head'];
+			// 	$content = $response['head'];
 		
-				// Extract the src attributes. You can also use preg_match_all
-				$document = new DOMDocument();
-				$document->loadHTML( $content );
+			// 	// Extract the src attributes. You can also use preg_match_all
+			// 	$document = new DOMDocument();
+			// 	$document->loadHTML( $content );
 		
-				// An empty array to store all the 'srcs'
-				$scripts_array = [];
+			// 	// An empty array to store all the 'srcs'
+			// 	$scripts_array = [];
 		
-				// Store every script's source inside the array
-				foreach( $document->getElementsByTagName('link') as $style ) {
-					if( $style->hasAttribute('src') ) {
-						$styles_array[] = $style->getAttribute('href');
-					}
-				}
-			}
+			// 	// Store every script's source inside the array
+			// 	foreach( $document->getElementsByTagName('link') as $style ) {
+			// 		if( $style->hasAttribute('src') ) {
+			// 			$styles_array[] = $style->getAttribute('href');
+			// 		}
+			// 	}
+			// }
 
 			return json_encode( $response );
 		}
