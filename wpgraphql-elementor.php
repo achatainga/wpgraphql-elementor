@@ -113,11 +113,9 @@ function register_my_custom_graphql_field() {
 	register_graphql_field( 'Page', 'styles', [
 		'type' => 'String',
 		'resolve' => function( $post ) {
-			// Get the id of the post object array
-			$post_id = $object['id'];
 
 			// Let's get the content of post number 123
-			$response = wp_remote_get( get_permalink() );
+			$response = wp_remote_get( "https://ac06954ff129.ngrok.io/index.php/elementor-11" );
 		
 			if ( is_array( $response ) ) {
 		
