@@ -162,7 +162,8 @@ function wpgraphql_elementor_get_content($URL){
 		}
 	
 		curl_setopt($ch, CURLOPT_URL, $URL);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 		// curl_setopt(/* ... */);
 	
 		$content = curl_exec($ch);
