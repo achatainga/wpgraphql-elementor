@@ -115,7 +115,7 @@ function register_my_custom_graphql_field() {
 		'resolve' => function( $post ) {
 
 			// Let's get the content of post number 123
-			$response = wp_remote_get( "http://localhost/index.php/elementor-11/" );
+			$response = wp_remote_get( "https://google.com" );
 		
 			if ( is_array( $response ) ) {
 		
