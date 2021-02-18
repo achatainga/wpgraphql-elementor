@@ -117,28 +117,28 @@ function register_my_custom_graphql_field() {
 			// $post_id = $object['id'];
 
 			// Let's get the content of post number 123
-			$response = wp_remote_get( get_home_url() . $post->post_name );
+			// $response = wp_remote_get( get_home_url() . $post->post_name );
 		
-			if ( is_array( $response ) ) {
+			// if ( is_array( $response ) ) {
 		
-				$content = $response['head'];
+			// 	$content = $response['head'];
 		
-				// Extract the src attributes. You can also use preg_match_all
-				$document = new DOMDocument();
-				$document->loadHTML( $content );
+			// 	// Extract the src attributes. You can also use preg_match_all
+			// 	$document = new DOMDocument();
+			// 	$document->loadHTML( $content );
 		
-				// An empty array to store all the 'srcs'
-				$scripts_array = [];
+			// 	// An empty array to store all the 'srcs'
+			// 	$scripts_array = [];
 		
-				// Store every script's source inside the array
-				foreach( $document->getElementsByTagName('link') as $style ) {
-					if( $style->hasAttribute('src') ) {
-						$styles_array[] = $style->getAttribute('href');
-					}
-				}
-			}
+			// 	// Store every script's source inside the array
+			// 	foreach( $document->getElementsByTagName('link') as $style ) {
+			// 		if( $style->hasAttribute('src') ) {
+			// 			$styles_array[] = $style->getAttribute('href');
+			// 		}
+			// 	}
+			// }
 
-			return implode( " ; ", $styles_array );
+			return get_home_url() . $post->post_name;implode( " ; ", $styles_array );
 		}
 	] );
 };
