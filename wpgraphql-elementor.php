@@ -111,8 +111,14 @@ function beautiful_elementor_timeline_widget_register_required_plugins() {
 add_action( 'graphql_register_types', 'example_extend_wpgraphql_schema' );
 function example_extend_wpgraphql_schema() {
 	register_graphql_field( 'RootQuery', 'customField', [
-		'type' => 'CustomType',
+		'type' => 'Page',
 		'resolve' => function() {
+			global $wp_styles;
+			$enqueued_styles = array();
+			foreach( $wp_styles->queue as $handle ) {
+				$enqueued_styles[] = $wp_styles->registered[$handle]->src;
+			}
+			
 			$contentElementor = "";
 
 			if (class_exists("\\Elementor\\Plugin")) {
@@ -125,7 +131,7 @@ function example_extend_wpgraphql_schema() {
 
 			// return $contentElementor;
 			return [
-				'count' => 5,
+				'styles' => implode( " ; ", $enqueued_styles ),
 				'testField' => $contentElementor,
 			];
 		}
@@ -137,8 +143,8 @@ function example_extend_wpgraphql_schema() {
 		'type' => 'String',
 		'description' => __( 'Describe what testField should be used for', 'your-textdomain' ),
 	  ],
-	  'count' => [
-		'type' => 'Int',
+	  'styles' => [
+		'type' => 'String',
 		'description' => __( 'Describe what the count field should be used for', 'your-textdomain' ),
 	  ],
 	],
