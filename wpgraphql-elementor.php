@@ -116,7 +116,7 @@ function register_my_custom_graphql_field() {
 
 			// Let's get the content of post number 123
 			$url = "https://bc7a3cb38ceb.ngrok.io/index.php/elementor-11/";
-			$response = wp_remote_get( $url );
+			$response = wpgraphql_elementor_get_content( $url );
 
 			// return $response;
 			// $response = wp_remote_get( $url );
@@ -152,103 +152,11 @@ add_filter( 'http_request_timeout', 'custom_http_request_timeout' );
 add_filter( 'https_local_ssl_verify', '__return_false' );
 add_filter( 'block_local_requests', '__return_false' );
 
-/**
- * Defines the function used to initial the cURL library.
- *
- * @param  string  $url        To URL to which the request is being made
- * @return string  $response   The response, if available; otherwise, null
- */
-function wpgralphql_elementor_curl( $url ) {
-
-	$curl = curl_init( $url );
-
-	curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
-	curl_setopt( $curl, CURLOPT_HEADER, 0 );
-	curl_setopt( $curl, CURLOPT_USERAGENT, '' );
-	curl_setopt( $curl, CURLOPT_TIMEOUT, 10 );
-
-	$response = curl_exec( $curl );
-	// if( 0 !== curl_errno( $curl ) || 200 !== curl_getinfo( $curl, CURLINFO_HTTP_CODE ) ) {
-	// 	$response = null;
-	// } // end if
-	curl_close( $curl );
-
-	return $response;
-
-} // end curl
-
-/**
- * Retrieves the response from the specified URL using one of PHP's outbound request facilities.
- *
- * @params	$url	The URL of the feed to retrieve.
- * @returns		The response from the URL; null if empty.
- */
-function wpgralphql_elementor_request_data( $url ) {
-
-	$response = null;
-
-	// First, we try to use wp_remote_get
-	$response = wp_remote_get( $url );
-	if( is_wp_error( $response ) ) {
-
-		// If that doesn't work, then we'll try file_get_contents
-		$response = file_get_contents( $url );
-		if( false == $response ) {
-
-			// And if that doesn't work, then we'll try curl
-			$response = wpgralphql_elementor_curl( $url );
-			if( null == $response ) {
-				$response = 0;
-			} // end if/else
-
-		} // end if
-
-	} // end if
-
-	// If the response is an array, it's coming from wp_remote_get,
-	// so we just want to capture to the body index for json_decode.
-	if( is_array( $response ) ) {
-		$response = $response['body'];
-	} // end if/else
-
-	return $response;
-
-} // end request_data
-
-/**
- * Retrieves the response from the specified URL using one of PHP's outbound request facilities.
- *
- * @params	$url	The URL of the feed to retrieve.
- * @returns			The response from the URL; null if empty.
- */
-function wpgralphql_elementor_get_response( $url ) {
-
-	$response = null;
-
-	// First, we try to use wp_remote_get
-	$response = wp_remote_get( $url );
-	if( is_wp_error( $response ) ) {
-
-		// If that doesn't work, then we'll try file_get_contents
-		$response = file_get_contents( $url );
-		if( false == $response ) {
-
-			// And if that doesn't work, then we'll try curl
-			$response = wpgralphql_elementor_curl( $url );
-			if( null == $response ) {
-				$response = 0;
-			} // end if/else
-
-		} // end if
-
-	} // end if
-
-	// If the response is an array, it's coming from wp_remote_get,
-	// so we just want to capture to the body index for json_decode.
-	if( is_array( $response ) ) {
-		$response = $response['body'];
-	} // end if/else
-
-	return $response;
-
-} // end get_response
+function wpgraphql_elementor_get_content($URL){
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_URL, $URL);
+	$data = curl_exec($ch);
+	curl_close($ch);
+	return $data;
+}
