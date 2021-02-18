@@ -113,10 +113,21 @@ function example_extend_wpgraphql_schema() {
 	register_graphql_field( 'RootQuery', 'customField', [
 		'type' => 'CustomType',
 		'resolve' => function() {
-		  return [
-			'count' => 5,
-			'testField' => 'test value...',
-		  ];
+			$contentElementor = "";
+
+			if (class_exists("\\Elementor\\Plugin")) {
+				$post_ID = 1;
+
+				$pluginElementor = \Elementor\Plugin::instance();
+				$contentElementor = $pluginElementor->frontend->get_builder_content($post_ID);
+			}
+
+
+			// return $contentElementor;
+			return [
+				'count' => 5,
+				'testField' => $contentElementor,
+			];
 		}
 	] );
   register_graphql_object_type( 'CustomType', [
