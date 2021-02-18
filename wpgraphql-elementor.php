@@ -114,6 +114,7 @@ function register_my_custom_graphql_field() {
 		'type' => 'String',
 		'resolve' => function() {
 			global $wp_styles;
+			global $enqueued_styles;
 			$enqueued_styles = array();
 			foreach( $wp_styles->queue as $handle ) {
 				$enqueued_styles[] = $wp_styles->registered[$handle]->src;
