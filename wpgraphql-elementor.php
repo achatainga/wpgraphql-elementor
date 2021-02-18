@@ -115,8 +115,8 @@ function register_my_custom_graphql_field() {
 		'resolve' => function( $post ) {
 
 			// Let's get the content of post number 123
-			$url = "https://bc7a3cb38ceb.ngrok.io/index.php/elementor-11/";
-			$response = wpgraphql_elementor_get_content( $url );
+			// $url = "https://bc7a3cb38ceb.ngrok.io/index.php/elementor-11/";
+			// $response = wpgraphql_elementor_get_content( $url );
 
 			// return $response;
 			// $response = wp_remote_get( $url );
@@ -140,7 +140,7 @@ function register_my_custom_graphql_field() {
 			// 	}
 			// }
 
-			return json_encode( $response );
+			return "styles";
 		}
 	] );
 };
