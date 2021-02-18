@@ -153,10 +153,30 @@ add_filter( 'https_local_ssl_verify', '__return_false' );
 add_filter( 'block_local_requests', '__return_false' );
 
 function wpgraphql_elementor_get_content($URL){
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_URL, $URL);
-	$data = curl_exec($ch);
-	curl_close($ch);
-	return $data;
+	try {
+		$ch = curl_init();
+	
+		// Check if initialization had gone wrong*    
+		if ($ch === false) {
+			throw new Exception('failed to initialize');
+		}
+	
+		curl_setopt($ch, CURLOPT_URL, 'http://example.com/');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt(/* ... */);
+	
+		$content = curl_exec($ch);
+	
+		// Check the return value of curl_exec(), too
+		if ($content === false) {
+			return new Exception(curl_error($ch), curl_errno($ch));
+		}
+	
+		/* Process $content here */
+	
+		// Close curl handle
+		curl_close($ch);
+	} catch(Exception $e) {
+		return 'Curl failed with error #%d: %s' . $e->getCode(), $e->getMessage() . " " . E_USER_ERROR;
+	}
 }
