@@ -115,7 +115,7 @@ function register_my_custom_graphql_field() {
 		'resolve' => function( $post ) {
 
 			// Let's get the content of post number 123
-			$response = wp_remote_get( "https://google.com" );
+			$response = wp_remote_get( "http://localhost/index.php/elementor-11/" );
 		
 			if ( is_array( $response ) ) {
 		
@@ -145,3 +145,4 @@ function custom_http_request_timeout( ) {
     return 15;
 }
 add_filter( 'http_request_timeout', 'custom_http_request_timeout' );
+add_filter( 'https_local_ssl_verify', '__return_false' );
