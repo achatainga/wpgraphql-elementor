@@ -180,4 +180,5 @@ function wpgraphql_elementor_get_content($URL){
 		echo 'Error:' . curl_error($ch);
 	}
 	curl_close($ch);
+	return $result;
 }
