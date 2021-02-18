@@ -108,22 +108,9 @@ function beautiful_elementor_timeline_widget_register_required_plugins() {
 	tgmpa( $plugins, $config );
 }
 
-add_action( 'graphql_register_types', 'register_my_custom_graphql_connection' );
-function register_my_custom_graphql_connection() {
-	$config = [
-		'fromType' => 'RootQuery',
-		'toType' => 'Page',
-		'fromFieldName' => 'customField',
-		'connectionTypeName' => 'customFieldConnection',
-		'resolve' => function( $id, $args, $context, $info ) {
-			$resolver   = new \WPGraphQL\Data\Connection\PostObjectConnectionResolver( $source, $args, $context, $info, $post_type );
-			$connection = $resolver->get_connection();
-		
-			return $connection;
-		},
-	];
-	register_graphql_connection( $config );
-	register_graphql_field( 'RootQuery', 'customField', [
+add_action( 'graphql_register_types', 'register_my_custom_graphql_field' );
+function register_my_custom_graphql_field() {
+	register_graphql_field( 'Page', 'customField', [
 		'type' => 'String',
 		'resolve' => function() {
 			global $wp_styles;
@@ -132,34 +119,9 @@ function register_my_custom_graphql_connection() {
 				$enqueued_styles[] = $wp_styles->registered[$handle]->src;
 			}
 			
-			$contentElementor = "";
-
-			if (class_exists("\\Elementor\\Plugin")) {
-				$post_ID = 17;
-
-				$pluginElementor = \Elementor\Plugin::instance();
-				$contentElementor = $pluginElementor->frontend->get_builder_content($post_ID);
-			}
-
-
-			// return $contentElementor;
 			return [
-				'styles' => implode( " ; ", $enqueued_styles ),
-				'testField' => $contentElementor,
+				'styles' => implode( " ; ", $enqueued_styles )
 			];
 		}
 	] );
-  register_graphql_object_type( 'CustomType', [
-	'description' => __( 'Describe what a CustomType is', 'your-textdomain' ),
-	'fields' => [
-	  'testField' => [
-		'type' => 'String',
-		'description' => __( 'Describe what testField should be used for', 'your-textdomain' ),
-	  ],
-	  'styles' => [
-		'type' => 'String',
-		'description' => __( 'Describe what the count field should be used for', 'your-textdomain' ),
-	  ],
-	],
-  ] );
 };
