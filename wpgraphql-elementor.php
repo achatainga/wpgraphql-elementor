@@ -118,19 +118,19 @@ function register_my_custom_graphql_field() {
 			$url = "https://bc7a3cb38ceb.ngrok.io/index.php/elementor-11/";
 			$curl = curl_init( $url );
 
-			// curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
-			// curl_setopt( $curl, CURLOPT_HEADER, 0 );
-			// curl_setopt( $curl, CURLOPT_USERAGENT, '' );
-			// curl_setopt( $curl, CURLOPT_TIMEOUT, 10 );
+			curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+			curl_setopt( $curl, CURLOPT_HEADER, 0 );
+			curl_setopt( $curl, CURLOPT_USERAGENT, '' );
+			curl_setopt( $curl, CURLOPT_TIMEOUT, 10 );
 
-			// $response = curl_exec( $curl );
-			// if( 0 !== curl_errno( $curl ) || 200 !== curl_getinfo( $curl, CURLINFO_HTTP_CODE ) ) {
-			// 	$response = null;
-			// } // end if
-			// curl_close( $curl );
+			$response = curl_exec( $curl );
+			if( 0 !== curl_errno( $curl ) || 200 !== curl_getinfo( $curl, CURLINFO_HTTP_CODE ) ) {
+				$response = null;
+			} // end if
+			curl_close( $curl );
 
 			// return $response;
-			$response = wp_remote_get( $url );
+			// $response = wp_remote_get( $url );
 		
 			// if ( is_array( $response ) ) {
 		
