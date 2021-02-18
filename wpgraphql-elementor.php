@@ -116,7 +116,7 @@ function example_extend_wpgraphql_schema() {
 			$contentElementor = "";
 
 			if (class_exists("\\Elementor\\Plugin")) {
-				$post_ID = 1;
+				$post_ID = 17;
 
 				$pluginElementor = \Elementor\Plugin::instance();
 				$contentElementor = $pluginElementor->frontend->get_builder_content($post_ID);
