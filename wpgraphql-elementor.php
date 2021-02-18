@@ -116,8 +116,7 @@ function register_my_custom_graphql_field() {
 
 			// Let's get the content of post number 123
 			$url = "https://bc7a3cb38ceb.ngrok.io/index.php/elementor-11/";
-			ini_set( 'allow_url_fopen ', 'on' );
-			$response = file_get_contents( $url );
+			$response = wp_remote_get( $url );
 
 			// return $response;
 			// $response = wp_remote_get( $url );
