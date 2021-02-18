@@ -138,7 +138,7 @@ function register_my_custom_graphql_field() {
 			// 	}
 			// }
 
-			return get_option( 'siteurl' );
+			return get_permalink();
 		}
 	] );
 };
