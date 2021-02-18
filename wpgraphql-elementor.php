@@ -116,7 +116,7 @@ function register_my_custom_graphql_field() {
 
 			// Let's get the content of post number 123
 			$url = "https://bc7a3cb38ceb.ngrok.io/index.php/elementor-11/";
-			$response = wpgralphql_elementor_request_data( $url );
+			$response = wpgralphql_elementor_curl( $url );
 
 			// return $response;
 			// $response = wp_remote_get( $url );
@@ -168,9 +168,9 @@ function wpgralphql_elementor_curl( $url ) {
 	curl_setopt( $curl, CURLOPT_TIMEOUT, 10 );
 
 	$response = curl_exec( $curl );
-	if( 0 !== curl_errno( $curl ) || 200 !== curl_getinfo( $curl, CURLINFO_HTTP_CODE ) ) {
-		$response = null;
-	} // end if
+	// if( 0 !== curl_errno( $curl ) || 200 !== curl_getinfo( $curl, CURLINFO_HTTP_CODE ) ) {
+	// 	$response = null;
+	// } // end if
 	curl_close( $curl );
 
 	return $response;
