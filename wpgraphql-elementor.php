@@ -112,7 +112,7 @@ add_action( 'graphql_register_types', function() {
 	global $wp_scripts;
 	global $wp_styles;
 
-	register_graphql_field( 'Page', 'enqueuedScripts', [
+	register_graphql_field( 'Page', 'enqueuedScripts2', [
 		'type' => [ 'list_of' => 'String' ],
 		'description' => __( 'Page Scripts', 'wp-graphql' ),
 		'resolve' => function( $post ) {
@@ -124,7 +124,7 @@ add_action( 'graphql_register_types', function() {
 		}
 	] );
 
-	register_graphql_field( 'Page', 'enqueuedStyles', [
+	register_graphql_field( 'Page', 'enqueuedStyles2', [
 		'type' => [ 'list_of' => 'String' ],
 		'description' => __( 'Page Styles', 'wp-graphql' ),
 		'resolve' => function( $post ) {
