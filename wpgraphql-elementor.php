@@ -121,7 +121,7 @@ function register_my_custom_graphql_field() {
 		
 			if ( is_array( $response ) ) {
 		
-				$content = $response['body'];
+				$content = $response['head'];
 		
 				// Extract the src attributes. You can also use preg_match_all
 				$document = new DOMDocument();
