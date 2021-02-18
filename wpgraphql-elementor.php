@@ -110,7 +110,7 @@ function beautiful_elementor_timeline_widget_register_required_plugins() {
 
 add_action( 'graphql_register_types', 'register_my_custom_graphql_field' );
 function register_my_custom_graphql_field() {
-	register_graphql_field( 'Page', 'customField', [
+	register_graphql_field( 'Page', 'styles', [
 		'type' => 'String',
 		'resolve' => function() {
 			global $wp_styles;
@@ -118,10 +118,8 @@ function register_my_custom_graphql_field() {
 			foreach( $wp_styles->queue as $handle ) {
 				$enqueued_styles[] = $wp_styles->registered[$handle]->src;
 			}
-			
-			return [
-				'styles' => implode( " ; ", $enqueued_styles )
-			];
+
+			return implode( " ; ", $enqueued_styles );
 		}
 	] );
 };
