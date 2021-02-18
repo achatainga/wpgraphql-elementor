@@ -177,6 +177,6 @@ function wpgraphql_elementor_get_content($URL){
 		// Close curl handle
 		curl_close($ch);
 	} catch(Exception $e) {
-		return 'Curl failed with error #%d: %s' . $e->getCode(), $e->getMessage() . " " . E_USER_ERROR;
+		return "Curl failed with error #%d: %s" . $e->getCode() . " " . $e->getMessage() . " " . E_USER_ERROR;
 	}
 }
