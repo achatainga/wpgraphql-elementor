@@ -112,9 +112,9 @@ add_action( 'graphql_register_types', 'register_my_custom_graphql_field' );
 function register_my_custom_graphql_field() {
 	register_graphql_field( 'Page', 'styles', [
 		'type' => 'String',
-		'resolve' => function( \WP_Post $post ) {
+		'resolve' => function( $post ) {
 			// Get the id of the post object array
-			$post_id = $object['id'];
+			// $post_id = $object['id'];
 
 			// Let's get the content of post number 123
 			$response = wp_remote_get( get_home_url() . $post->post_name );
