@@ -116,6 +116,7 @@ add_action( 'graphql_register_types', function() {
 		'type' => [ 'list_of' => 'String' ],
 		'description' => __( 'Page Scripts', 'wp-graphql' ),
 		'resolve' => function( $post ) {
+			global $wp_scripts;
 			$enqueued_scripts = array('scripts');
 			foreach( $wp_scripts->queue as $handle ) {
 					$enqueued_scripts[] = $wp_scripts->registered[$handle]->src;
@@ -128,6 +129,7 @@ add_action( 'graphql_register_types', function() {
 		'type' => [ 'list_of' => 'String' ],
 		'description' => __( 'Page Styles', 'wp-graphql' ),
 		'resolve' => function( $post ) {
+			global $wp_styles;
 			$enqueued_styles = array('styles');
 			foreach( $wp_styles->queue as $handle ) {
 					$enqueued_styles[] = $wp_styles->registered[$handle]->src;
