@@ -112,15 +112,33 @@ add_action( 'graphql_register_types', 'register_my_custom_graphql_field' );
 function register_my_custom_graphql_field() {
 	register_graphql_field( 'Page', 'styles', [
 		'type' => 'String',
-		'resolve' => function() {
-			global $wp_styles;
-			global $enqueued_styles;
-			$enqueued_styles = array();
-			foreach( $wp_styles->queue as $handle ) {
-				$enqueued_styles[] = $wp_styles->registered[$handle]->src;
+		'resolve' => function( \WP_Post $post ) {
+			// Get the id of the post object array
+			$post_id = $object['id'];
+
+			// Let's get the content of post number 123
+			$response = wp_remote_get( get_home_url() . $post->post_name );
+		
+			if ( is_array( $response ) ) {
+		
+				$content = $response['body'];
+		
+				// Extract the src attributes. You can also use preg_match_all
+				$document = new DOMDocument();
+				$document->loadHTML( $content );
+		
+				// An empty array to store all the 'srcs'
+				$scripts_array = [];
+		
+				// Store every script's source inside the array
+				foreach( $document->getElementsByTagName('link') as $style ) {
+					if( $style->hasAttribute('src') ) {
+						$styles_array[] = $style->getAttribute('href');
+					}
+				}
 			}
 
-			return implode( " ; ", $enqueued_styles );
+			return implode( " ; ", $styles_array );
 		}
 	] );
 };
