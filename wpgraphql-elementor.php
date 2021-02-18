@@ -138,7 +138,7 @@ function register_my_custom_graphql_field() {
 			// 	}
 			// }
 
-			return get_home_url() . $post->post_name;implode( " ; ", $styles_array );
+			return get_site_url();
 		}
 	] );
 };
