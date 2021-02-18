@@ -142,7 +142,8 @@ function register_my_custom_graphql_field() {
 };
 
 function custom_http_request_timeout( ) {
-    return 15;
+    return 10;
 }
 add_filter( 'http_request_timeout', 'custom_http_request_timeout' );
 add_filter( 'https_local_ssl_verify', '__return_false' );
+add_filter( 'block_local_requests', '__return_false' );
