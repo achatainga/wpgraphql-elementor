@@ -117,9 +117,9 @@ add_action( 'graphql_register_types', function() {
 		'description' => __( 'Page Scripts', 'wp-graphql' ),
 		'resolve' => function( $post ) {
 			global $wp_scripts;
-			$enqueued_scripts = array('scripts');
+			$enqueued_scripts = array();
 			foreach( $wp_scripts->queue as $handle ) {
-					$enqueued_scripts[] = $wp_scripts->registered[$handle]->src;
+				$enqueued_scripts[] = $wp_scripts->registered[$handle]->src;
 			}
 			return $enqueued_scripts;
 		}
@@ -130,9 +130,9 @@ add_action( 'graphql_register_types', function() {
 		'description' => __( 'Page Styles', 'wp-graphql' ),
 		'resolve' => function( $post ) {
 			global $wp_styles;
-			$enqueued_styles = array('styles');
+			$enqueued_styles = array();
 			foreach( $wp_styles->queue as $handle ) {
-					$enqueued_styles[] = $wp_styles->registered[$handle]->src;
+				$enqueued_styles[] = $wp_styles->registered[$handle]->src;
 			}
 			return $enqueued_styles;
 		}
